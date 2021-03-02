@@ -1,0 +1,31 @@
+{% macro svg(id, width, height) %}
+  <svg width="{{ width }}" height="{{ height }}">
+    <use href="#{{ id }}"></use>
+  </svg>
+{% endmacro %}
+
+{% macro logo() %}
+  <div class="logo">
+    <a href="#" aria-label="логотип">
+      {% import _self as macro %}
+      {{ macro.svg('logo', 176, 47) }}
+    </a>
+  </div>
+{% endmacro %}
+
+
+{% macro picture(class, fileName, width, height, alt = 'фрукт', ext = 'jpg') %}
+  <picture>
+    <!-- 1x-{{ width }}px 2x-{{ width * 2 }}px -->
+    <source type="image/webp" srcset="img/content/{{ fileName }}.webp 1x, img/content/{{ fileName }}@2x.webp 2x">
+    <img class="{{ class ?  class : "content-img"}}" src="img/content/{{ fileName }}.{{ ext }}" srcset="img/content/{{ fileName }}@2x.{{ ext }} 2x" width="{{ width }}" height="{{ height }}" alt="{{ alt }}">
+  </picture>
+{% endmacro %}
+
+{% macro lazy(class, fileName, width, height, alt = 'фрукт', ext = 'jpg') %}
+  <picture class="lazy-img inv">
+    <!-- 1x-{{ width }}px 2x-{{ width * 2 }}px -->
+    <source type="image/webp" data-srcset="img/content/{{ fileName }}.webp 1x, img/content/{{ fileName }}@2x.webp 2x">
+    <img class="{{ class }} content-img" src="img/content/{{ fileName }}.{{ ext }}" srcset="img/content/{{ fileName }}.{{ ext }} 2x" width="{{ width }}" height="{{ height }}" alt="{{ alt }}" loading="lazy" decoding="async">
+  </picture>
+{% endmacro %}
