@@ -1,0 +1,10 @@
+<div id="search-modal" class="search-wrap modal">
+  <form onsubmit="return false" class="search modal__wrap" method="post" action="https://jsonplaceholder.typicode.com/posts"
+        autocomplete="on">
+    <label class="search__field">
+      <input type="search" name="search" placeholder="Поиск по каталогу">
+      {{ macro.svg('search', 44, 44) }}
+    </label>
+    <button class="search__btn" type="submit">Поиск</button>
+  </form>
+</div>

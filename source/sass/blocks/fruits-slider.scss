@@ -1,0 +1,115 @@
+.fruits-slider {
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  background-image: url("../img/bg/bg-two-whater.jpg");
+  overflow: hidden;
+
+  @include retina {
+    background-image: url("../img/bg/bg-two-whater@2x.jpg");
+  }
+}
+
+.fruits-slider__list {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+
+.fruits-slider__item {
+  width: 100%;
+  display: flex;
+  padding: 100px 100px 0;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.fruits-slider__img-wrap {
+  width: 35.52%;
+}
+
+.fruits-slider__description {
+  margin-top: 17%;
+  font-family: "Dopestyle", "Arial", sans-serif;
+  color: $color-orange;
+}
+
+.fruits-slider__name {
+  margin-right: 50px;
+  font-size: 60px;
+  line-height: 1;
+}
+
+.fruits-slider__price {
+  font-size: 50px;
+  line-height: 1;
+  text-transform: lowercase;
+
+  &::before {
+    content: attr(data-price);
+    margin-right: 20px;
+  }
+}
+
+.fruits-slider__btn {
+  position: absolute;
+  top: 40%;
+}
+
+.btn-back {
+  left: 50px;
+}
+
+.btn-next {
+  left: 41.66%;
+  transform: scale(-1);
+}
+
+.fruits-slider__actions {
+  position: absolute;
+  margin-top: calc(17% + 200px);
+  top: 0;
+  right: 100px;
+  width: 475px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fruits-slider__count {
+  display: flex;
+  margin-bottom: 44px;
+  align-items: center;
+  font-family: "Dopestyle", "Arial", sans-serif;
+
+  button {
+    width: 30px;
+    height: 30px;
+    background-color: $color-orange;
+    color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Arial", sans-serif;
+    font-size: 25px;
+  }
+}
+
+.fruits-slider__value {
+  padding: 0 20px;
+  text-align: center;
+  color: $color-orange;
+  font-size: 50px;
+  line-height: 1;
+}
+
+.fruits-slider__buy {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  button {
+    padding: 9px 50px 12px;
+  }
+}

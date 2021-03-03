@@ -13,11 +13,10 @@
 }
 
 .wrapper {
+  position: relative;
   max-width: 1920px;
   width: 100%;
   margin: 0 auto;
-  transition: max-width $delay-default;
-  contain: content;
 }
 
 .container {
@@ -30,8 +29,53 @@
 
 .content-img {
   height: 100%;
-  object-fit: cover;
-  object-position: 0 0;
-  //background-color: $bg-img;
+  object-fit: contain;
 }
 
+main {
+  transition: filter .6s;
+}
+
+.search-menu-active main {
+  filter: blur(5px);
+}
+
+.logo {
+  position: absolute;
+  top: 40px;
+  left: 53px;
+  z-index: 100;
+
+  @media (max-width: $viewport-m) {
+    top: 30px;
+    left: 43px;
+
+    img {
+      width: 120px;
+      height: 50px;
+    }
+  }
+
+  @media (max-width: $viewport-s) {
+    top: 15px;
+    left: 25px;
+  }
+}
+
+.btn-buy {
+  font-size: 25px;
+  color: #FFF;
+  border-radius: 20px;
+
+  &--red {
+    background: #E21D1D;
+  }
+
+  &--green {
+    background: #51971A;
+  }
+
+  @media (max-width: $viewport-s) {
+    font-size: 15px;
+  }
+}

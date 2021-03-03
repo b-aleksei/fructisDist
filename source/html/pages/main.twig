@@ -1,13 +1,13 @@
 {% extends "../base/layout.twig" %}
 {% set title = 'Главная' %}
 
-
+{% block logo %}
+{% endblock %}
 {% block main %}
   <h1 class="visually-hidden">Фрукто сервис</h1>
   <div class="main wrapper">
     {{ macro.picture('main-lime', 'lime-main', 903, 911, 'лайм', 'png') }}
     {{ macro.picture('main-text', 'text-main', 1663, 302, 'фрукто сервис', 'png') }}
-    {% include '../components/nav.twig' %}
   </div>
 {% endblock %}
 

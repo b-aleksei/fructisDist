@@ -4,10 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{ title }}</title>
-  <link rel="preload" href="fonts/arimo-bold.woff2" as="font" crossorigin="anonymous">
-  <link rel="preload" href="fonts/arimo-regular.woff2" as="font" crossorigin="anonymous">
   {% block head %}
     <link rel="stylesheet" href="css/style.min.css">
   {% endblock %}
@@ -19,17 +16,17 @@
   </div>
 {% endblock %}
 
-{% block header %}
-  {% include 'header.twig' %}
-{% endblock %}
-<main>
-{% block main %}{% endblock %}
-</main>
+<div class="wrapper {{ classWrapper }}">
+  {% block logo %}
+    {% include 'logo.twig' %}
+  {% endblock %}
+  <main>
+  {% block main %}{% endblock %}
+  </main>
 
-{% block footer %}
-  {% include 'footer.twig' %}
-{% endblock %}
-
+  {% include '../components/search.twig' %}
+  {% include '../components/nav.twig' %}
+</div>
 
 {% block scripts %}
   <script src="js/vendor.min.js"></script>

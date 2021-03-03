@@ -1,0 +1,36 @@
+{% extends "../base/layout.twig" %}
+{% set title = 'Корзина' %}
+{% set classWrapper = 'cart' %}
+{% set order = ['Клубника', 'Базилик красный', 'Огурец', 'Хурма Бычье сердце'] %}
+
+{% block main %}
+  <h1 class="visually-hidden">Корзина</h1>
+  <div class="cart__container">
+    <div class="cart__img-wrap">
+      {{ macro.picture('', 'assorti', 693, 693, 'корзина фруктов', 'png', '') }}
+    </div>
+    <div class="cart__content">
+      <table class="order">
+        <caption class="order__title">Ваш заказ</caption>
+        {% for item in order %}
+          <tr class="order__item">
+            <td class="order__item-name">{{ item }}</td>
+            <td>1кг</td>
+            <td class="order__item-price" data-price="300">руб</td>
+            <td>
+              <button class="order__item-remove" type="button" aria-label="Удалить">
+                {{ macro.svg('trash', 14, 15) }}
+              </button>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+      <p class="order__amount">
+        <span class="order__total" data-total="1200">Сумма:</span>руб
+      </p>
+      <button class="cart__btn-buy btn-buy btn-buy--red" type="button">Заказать</button>
+
+    </div>
+  </div>
+{% endblock %}
+

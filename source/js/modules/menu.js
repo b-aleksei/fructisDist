@@ -5,57 +5,79 @@ export default () => {
     return;
   }
 
+  const perсentForSwipe = 0.1; // процент перетаскивания чтобы сработал доезд окна
+  let isSwipingMenu = false; // на данный момент меню перетаскивается?
+  let isTouchEvent = false;
+  let touch = 'pointerdown';
+  let touchMove = 'pointermove';
+  let touchUp = 'pointerup';
+  if ('ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch) {
+    isTouchEvent = true;
+    touch = 'touchstart';
+    touchMove = 'touchmove';
+    touchUp = 'touchend';
+  }
+
   const showMenu = ({target}) => {
+    if (isSwipingMenu) {
+      return;
+    }
     target.setAttribute('aria-expanded', invertExpanded(target));
     document.body.classList.toggle('nav-menu-active');
   };
 
-  const resolveStatus = (value, maxValue) => {
-    return Math.abs(value) > maxValue / 3;
+  const resolveForSwipe = (value, maxValue, isMenuOpen) => {
+    if (isMenuOpen) {
+      return Math.abs(value) < maxValue * (1 - perсentForSwipe);
+    } else {
+      return Math.abs(value) > maxValue * perсentForSwipe;
+    }
   };
 
   const swipeMenu = (evt) => {
-    // const y = evt.changedTouches[0].clientY;
     const parent = evt.target.parentElement;
+    let isMenuOpen = false;
+    let initialPosition = 0;
     let shift = 0;
-    let minEdge = 0;
-    if (document.body.classList.contains('nav-menu-active')) {
-      minEdge = parent.offsetHeight;
-    }
+    const minEdge = 0;
     const maxEdge = parent.offsetHeight;
-    const touchY = evt.changedTouches[0].clientY;
-    // const rightEdge = range.offsetWidth - evt.target.offsetWidth;
-    // const topEdge
+    if (document.body.classList.contains('nav-menu-active')) {
+      isMenuOpen = true;
+      shift = initialPosition = maxEdge;
+    }
+    const touchY = (isTouchEvent) ? evt.changedTouches[0].clientY : evt.clientY;
 
     const onMove = (e) => {
-      const y = e.changedTouches[0].clientY;
-      shift = y - touchY;
-      if (shift < -maxEdge) {
-        shift = -maxEdge;
+      isSwipingMenu = true;
+      const y = (isTouchEvent) ? e.changedTouches[0].clientY : e.clientY;
+      shift = touchY - y + initialPosition;
+      if (shift > maxEdge) {
+        shift = maxEdge;
       }
-      if (shift > minEdge) {
+      if (shift < minEdge) {
         shift = minEdge;
       }
-      console.log('shift: ', shift);
-      parent.style.transform = `translate3d(-50%, ${shift}px, 0)`;
+      parent.style.cssText = `transform: translate3d(-50%, ${-shift}px, 0); transition: none`;
     };
 
     const onTouchUp = () => {
-      parent.style.transform = '';
-      console.log(resolveStatus(shift, maxEdge), 'resolveStatus');
-      if (resolveStatus(shift, maxEdge)) {
+      setTimeout(() => { // чтобы событие отработало после других обработчиков
+        isSwipingMenu = false;
+      });
+      parent.style.cssText = '';
+      if (resolveForSwipe(shift, maxEdge, isMenuOpen)) {
         document.body.classList.toggle('nav-menu-active');
       }
-      document.removeEventListener('touchmove', onMove);
-      document.removeEventListener('touchend', onTouchUp);
+      document.removeEventListener(touchMove, onMove);
+      document.removeEventListener(touchUp, onTouchUp);
     };
 
-    document.addEventListener('touchmove', onMove);
-    document.addEventListener('touchend', onTouchUp);
+    document.addEventListener(touchMove, onMove);
+    document.addEventListener(touchUp, onTouchUp);
   };
 
   navButton.addEventListener('click', showMenu);
-  navButton.addEventListener('touchstart', swipeMenu);
+  navButton.addEventListener(touch, swipeMenu);
 };
 
 

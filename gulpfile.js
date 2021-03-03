@@ -14,6 +14,14 @@ const del = require('del');
 const webpackStream = require('webpack-stream');
 const webpackConfig = require('./webpack.config.js');
 const twig = require('gulp-twig');
+const gulpAvif = require('gulp-avif');
+
+
+const avif = () => {
+  return gulp.src('source/1/*.{png,jpg}')
+    .pipe(gulpAvif())
+    .pipe(gulp.dest('source/1/'));
+}
 
 const html = () => {
   return gulp.src(['source/html/pages/*.twig'])
@@ -54,7 +62,7 @@ const js = () => {
 };
 
 const svgo = () => {
-  return gulp.src('source/img/**/*.{svg}')
+  return gulp.src('source/1/**/*.{svg}')
       .pipe(imagemin([
         imagemin.svgo({
             plugins: [
@@ -145,6 +153,8 @@ const optimizeImages = () => {
 
 exports.build = build;
 exports.html = html;
+exports.svgo = svgo;
 exports.start = start;
 exports.webp = createWebp;
+exports.avif = avif;
 exports.imagemin = optimizeImages;

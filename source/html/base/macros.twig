@@ -22,10 +22,10 @@
   </picture>
 {% endmacro %}
 
-{% macro lazy(class, fileName, width, height, alt = 'фрукт', ext = 'jpg') %}
-  <picture class="lazy-img inv">
+{% macro lazy(class, fileName, width, height, alt = 'фрукт', ext = 'jpg', directory) %}
+  <picture>
     <!-- 1x-{{ width }}px 2x-{{ width * 2 }}px -->
-    <source type="image/webp" data-srcset="img/content/{{ fileName }}.webp 1x, img/content/{{ fileName }}@2x.webp 2x">
-    <img class="{{ class }} content-img" src="img/content/{{ fileName }}.{{ ext }}" srcset="img/content/{{ fileName }}.{{ ext }} 2x" width="{{ width }}" height="{{ height }}" alt="{{ alt }}" loading="lazy" decoding="async">
+    <source type="image/webp" data-srcset="img/content/{{ directory }}{{ fileName }}.webp 1x, img/content/{{ directory }}{{ fileName }}@2x.webp 2x">
+    <img class="{{ class ?  class : "content-img"}}" src="img/content/{{ directory }}{{ fileName }}.{{ ext }}" srcset="img/content/{{ directory }}{{ fileName }}.{{ ext }} 2x" width="{{ width }}" height="{{ height }}" alt="{{ alt }}" loading="lazy" decoding="async">
   </picture>
 {% endmacro %}
