@@ -105,16 +105,27 @@ open(selector, multiple, opener) {
   this.currentWindow.modal.addEventListener('transitionend', setFocus);
   this.currentWindow.modal.setAttribute('aria-hidden', 'false');
   this.currentWindow.modal.classList.add('modal--active');
+  const activeClass = this.currentWindow.modal.dataset.activeClass;
+  if (activeClass) {
+    document.body.classList.add(activeClass);
+    this.currentWindow.activeClass = activeClass;
+  }
   this.openedWindows.push(this.currentWindow);
 }
 
 close(selector, multiple, opener) {
+  if (!this.openedWindows.length) {
+    return;
+  }
   this.config.beforeClose(this);
-  const _currentWindow = this.openedWindows[this.openedWindows.length - 1];
-  _currentWindow.modal.classList.remove('modal--active');
-  _currentWindow.modal.setAttribute('aria-hidden', 'true');
-  _currentWindow.starter.setAttribute('aria-expanded', 'false');
-  _currentWindow.starter.focus();
+  const currentWindow = this.openedWindows[this.openedWindows.length - 1];
+  currentWindow.modal.classList.remove('modal--active');
+  currentWindow.modal.setAttribute('aria-hidden', 'true');
+  currentWindow.starter.setAttribute('aria-expanded', 'false');
+  currentWindow.starter.focus();
+  if (currentWindow.activeClass) {
+    document.body.classList.remove(currentWindow.activeClass);
+  }
 
   this.openedWindows.pop();
   if (this.openedWindows.length) {
@@ -123,13 +134,13 @@ close(selector, multiple, opener) {
   }
 
   if (this.reopen) {
-    this.previousStarter = _currentWindow.starter;
+    this.previousStarter = currentWindow.starter;
 	  this.reopen = false;
 	  const modalOpen = () => {
       this.open(selector, multiple, opener);
-      _currentWindow.modal.removeEventListener('transitionend', modalOpen);
+      currentWindow.modal.removeEventListener('transitionend', modalOpen);
 	  };
-    _currentWindow.modal.addEventListener('transitionend', modalOpen);
+    currentWindow.modal.addEventListener('transitionend', modalOpen);
 	  return;
   }
 

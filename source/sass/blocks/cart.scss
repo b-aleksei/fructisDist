@@ -2,7 +2,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
-
   background-image: url("../img/bg/water-single.jpg");
 
   @media (max-width: $viewport-m) {
@@ -30,7 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 100px;
+  padding: 0 50px;
   margin: 0 auto;
 
   @media (max-width: $viewport-l) {
@@ -50,40 +49,38 @@
 }
 
 .cart__img-wrap {
-  width: 44.14%;
+  width: 51%;
   flex-shrink: 0;
+
+  @media (max-width: 1560px) {
+    width: 45%;
+  }
 
   @media (max-width: $viewport-m) {
     display: none;
   }
 }
 
-.cart__content {
+.cart__content-wrap {
   position: relative;
-  min-height: 600px;
-  padding: 120px 50px 80px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: url("../img/bg/list.png") 0 0/100% 100% no-repeat;
-
-  @media (max-width: $viewport-s) {
-    min-height: initial;
-    padding: 120px 10px 60px;
-  }
 
   &::before {
     content: "";
     position: absolute;
-    top: 10px;
+    top: 20px;
     left: -20px;
     width: 105px;
     height: 100px;
     transform: rotate(-180deg);
     background: url("../img/bg/leaf2.png") center/contain no-repeat;
+    z-index: 1;
+
+    @media (max-width: 1280px) {
+      top: 30px;
+    }
 
     @media (max-width: $viewport-s) {
-      top: -20px;
+      top: 40px;
       left: -40px;
     }
   }
@@ -99,19 +96,89 @@
   }
 }
 
+.cart__content {
+  position: relative;
+  min-height: 600px;
+  width: 100%;
+  max-width: 660px;
+  padding: 120px 68px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: 0 71px;
+  background-image: url("../img/bg/list.png");
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 11px;
+    width: calc(100% - 30px);
+    height: 138px;
+    background-size: 100% auto;
+    background-position: 0 bottom;
+    background-repeat: no-repeat;
+    background-image: url("../img/bg/list-top.png");
+
+    @include retina {
+      background-image: url("../img/bg/list-top@2x.png");
+    }
+
+    @media (max-width: $viewport-s) {
+      background-size: 390px auto;
+    }
+  }
+
+  @include retina {
+    background-image: url("../img/bg/list-top@2x.png"), url("../img/bg/list.png");
+  }
+
+  @media (max-width: 1280px) {
+    padding: 120px 50px 80px;
+    background-position: 0 83px;
+  }
+
+  @media (max-width: $viewport-s) {
+    min-height: initial;
+    padding: 120px 30px 60px;
+    background-position: 0 96px;
+  }
+}
+
+.webp .cart__content {
+  background-image: url("../img/bg/list.webp");
+
+  &::before {
+    background-image: url("../img/bg/list-top.webp");
+
+    @include retina {
+      background-image: url("../img/bg/list-top@2x.webp");
+    }
+  }
+}
+
 .cart__btn-buy {
   margin-top: auto;
   padding: 6px 34px 8px;
 }
 
 .order {
+  width: 100%;
+  margin-top: 20px;
   margin-bottom: 46px;
-  font-size: 18px;
+  font-size: 25px;
   color: #7A7A7A;
   border-spacing: 15px 0;
 
+  @media (max-width: 1280px) {
+    font-size: 20px;
+  }
+
   @media (max-width: $viewport-s) {
     margin-bottom: 30px;
+    font-size: 16px;
   }
 
   @media (max-width: 375px) {
@@ -121,20 +188,34 @@
 
 .order__title {
   margin-bottom: 40px;
-  font-size: 30px;
+  font-size: 40px;
   color: #262F56;
 
+  @media (max-width: 1280px) {
+    font-size: 35px;
+  }
+
   @media (max-width: $viewport-s) {
-    display: none;
+    font-size: 30px;
+    //display: none;
   }
 }
 
 .order__item-name {
-  max-width: 300px;
+  min-width: 300px;
   padding-right: 10px;
-  font-size: 20px;
-  font-family: "Dopestyle", "Arial", sans-serif;
+  font-size: 30px;
   color: $color-orange;
+
+  @media (max-width: 1280px) {
+    font-size: 25px;
+    min-width: 200px;
+  }
+
+  @media (max-width: $viewport-s) {
+    font-size: 18px;
+    min-width: initial;
+  }
 
   @media (max-width: 375px) {
     font-size: 16px;
@@ -150,8 +231,13 @@
 
 .order__item-remove {
   position: relative;
-  padding: 0;
-  min-width: 14px;
+  min-width: 20px;
+  padding: 5px 0 0 0;
+
+  @media (max-width: $viewport-s) {
+    min-width: 14px;
+    height: 14px;
+  }
 
   &::before {
     content: "";
@@ -168,13 +254,18 @@
   display: flex;
   width: 100%;
   margin-bottom: 24px;
-  font-size: 20px;
+  padding-right: 20px;
+  font-size: 30px;
   justify-content: flex-end;
   align-items: center;
   color: #3A3A3A;
 
+  @media (max-width: 1280px) {
+    font-size: 25px;
+  }
+
   @media (max-width: $viewport-s) {
-    padding-right: 20px;
+    font-size: 20px;
   }
 
   @media (max-width: 375px) {

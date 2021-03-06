@@ -1,0 +1,69 @@
+{% extends "../base/layout.twig" %}
+{% set title = 'Овощи' %}
+{% set classWrapper = 'fruit-slider-wrap' %}
+{% set fruits = [
+  {
+    filename: 'baklajan',
+    title: 'Баклажаны'
+  },
+  {
+    filename: 'broccoli',
+    title: 'Брокколи'
+  },
+  {
+    filename: 'imbir',
+    title: 'Имбирь'
+  },
+  {
+    filename: 'kolrabi',
+    title: 'Кольраби'
+  },
+  {
+    filename: 'redis',
+    title: 'Редис'
+  },
+  {
+    filename: 'zel',
+    title: 'Зеленая штуковина'
+  },
+] %}
+
+
+
+{% block main %}
+  <h1 class="visually-hidden">Каталог овощей</h1>
+  <div class="fruits-slider swiper-container">
+    <div class="fruits-slider__list swiper-wrapper">
+      {% for fruit in fruits %}
+        <div id="{{ fruit.filename }}" class="fruits-slider__item swiper-slide">
+          <div class="fruits-slider__img-wrap">
+            {{ macro.lazy('fruits-slider__img', fruit.filename, 600, 690, fruit.title, 'png', 'veg/') }}
+          </div>
+          <p class="fruits-slider__description">
+            <span class="fruits-slider__name">{{ fruit.title }}</span>
+            <span class="fruits-slider__price" data-price="111">руб/кг</span>
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+    <button class="fruits-slider__btn btn-back" type="button" aria-label="назад">
+      {{ macro.svg('arrow-slide', 42, 40) }}
+    </button>
+    <button class="fruits-slider__btn btn-next" type="button" aria-label="вперед">
+      {{ macro.svg('arrow-slide', 42, 40) }}
+    </button>
+  </div>
+  <div class="fruits-slider__actions">
+    <div class="fruits-slider__count">
+      <button class="fruits-slider__dec change-value-btn" type="button" aria-label="уменьшить на 1">-</button>
+      <span class="fruits-slider__value">1</span>
+      <button class="fruits-slider__inc change-value-btn" type="button" aria-label="увеличить на 1">+</button>
+    </div>
+    <div class="fruits-slider__buy">
+      <button class="btn-buy btn-buy--red fruits-slider__order" type="button">Заказать</button>
+      <button class="btn-buy btn-buy--green fruits-slider__cart" type="button">В корзину</button>
+    </div>
+
+  </div>
+{% endblock %}
+

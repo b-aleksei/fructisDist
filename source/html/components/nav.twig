@@ -6,32 +6,32 @@
   <nav class="nav">
     <ul id="main-menu" class="nav__list">
       <li class="nav__item nav__item--back">
-        <a class="nav__link" href="#" aria-label="шаг назад">
+        <button type="button" class="nav__link" aria-label="шаг назад" onclick="window.history.back()">
           {{ macro.svg('chevron-left', 44, 44) }}
-        </a>
+        </button>
       </li>
       <li class="nav__item nav__item--search">
-        <a class="nav__link" href="#" aria-label="поиск по сайту" data-modal-open="search-modal">
+        <button class="nav__link nav__link-search" type="button" aria-label="поиск по сайту">
           {{ macro.svg('search', 44, 44) }}
-        </a>
+        </button>
       </li>
       <li class="nav__item nav__item--fruits">
-        <a class="nav__link" href="#" aria-label="каталог фруктов">
+        <a class="nav__link" href="fruits-slider.html" aria-label="каталог фруктов">
           {{ macro.svg('fruits', 56, 57) }}
         </a>
       </li>
       <li class="nav__item nav__item--vegetables">
-        <a class="nav__link" href="#" aria-label="каталог овощей">
+        <a class="nav__link" href="veg-slider.html" aria-label="каталог овощей">
           {{ macro.svg('vegetables', 56, 57) }}
         </a>
       </li>
       <li class="nav__item nav__item--info">
-        <a class="nav__link" href="#" aria-label="о нас">
+        <a class="nav__link" href="contact.html" aria-label="о нас">
           {{ macro.svg('info', 46, 46) }}
         </a>
       </li>
       <li class="nav__item nav__item--cart">
-        <a class="nav__link" href="#" aria-label="корзина">
+        <a class="nav__link" href="cart.html" aria-label="корзина">
           {{ macro.svg('bag', 38, 44) }}
         </a>
       </li>

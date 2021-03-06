@@ -118,8 +118,9 @@
   top: 0;
   left: 50%;
   border-radius: 50%;
-  background-color: #BCD3FF;
+  background-color: $color-orange;
   transform: translate(-50%, -50%);
+  transition: background-color $delay-default;
   z-index: 4;
 
   &::before {
@@ -187,6 +188,10 @@
   }
 
   &--info {
+    svg {
+      fill: #75A4FF;
+    }
+
     @media (max-width: $viewport-s) {
       svg {
         width: 38px;
@@ -204,6 +209,7 @@
 }
 
 .nav__link {
+  padding: 0;
   display: block;
   max-width: 57px;
 
@@ -218,7 +224,11 @@
     //bottom: 0;
   }
 
-  .nav__toggle::before {
-    transform: translate3d(-50%, -40%, 0);
+  .nav__toggle {
+    background-color: $color-green;
+
+    &::before {
+      transform: translate3d(-50%, -40%, 0);
+    }
   }
 }

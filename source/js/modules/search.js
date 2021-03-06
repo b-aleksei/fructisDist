@@ -1,15 +1,17 @@
 import MultiModal from './modal';
 
-new MultiModal({
-  beforeOpen(obj) {
-    if (obj.currentWindow.modal.id === 'search-modal') {
-      document.body.classList.add('search-menu-active');
-    }
-  },
+const modalObj = new MultiModal();
 
-  beforeClose(obj) {
-    if (obj.currentWindow.modal.id === 'search-modal') {
-      document.body.classList.remove('search-menu-active');
+const btnSearch = document.querySelector('.nav__link-search');
+
+if (btnSearch) {
+  btnSearch.addEventListener('click', () => {
+    if (!document.body.classList.contains('search-menu-active')) {
+      setTimeout(() => {
+        modalObj.open('#search-modal');
+      });
+    } else {
+      modalObj.close();
     }
-  },
-});
+  });
+}

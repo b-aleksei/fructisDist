@@ -85,7 +85,7 @@ const sprite = () => {
 const syncserver = () => {
   server.init({
     server: 'build/',
-    startPath: "/index.html",
+    startPath: "/_index.html",
     notify: false,
     open: true,
     cors: true,

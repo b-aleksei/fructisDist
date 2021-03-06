@@ -1,0 +1,66 @@
+{% extends "../base/layout.twig" %}
+{% set title = 'Инофрмация' %}
+{% set classWrapper = 'contact' %}
+{% set infoTitle = ['Наши контакты', 'Оплатить', 'Доставка', 'Пункт Самовывоза'] %}
+
+{% block main %}
+  <h1 class="visually-hidden">Информация</h1>
+  <div class="contact__container">
+    <div class="contact__img-wrap">
+      {{ macro.picture('', 'assorti-air', 705, 1080, 'ассорти фруктов', 'png', '') }}
+    </div>
+    <div class="contact__content-wrap">
+      <div class="contact__content">
+        <div class="contact__wrap-slider-top">
+          <div class="contact__slider swiper-wrapper">
+            {% for title in infoTitle %}
+              <div class="contact__info swiper-slide">
+                <h2 class="contact__title">{{ title }}</h2>
+                <div class="contact__info-item contact__phones">
+                  {{ macro.svg('phone', 54,41) }}
+                  <a href="tel:+74957724455">8 (495) 772-44-55</a>
+                  <a href="tel:+79851292020">+7 (985) 129-20-20</a>
+                </div>
+                <div class="contact__info-item contact__email">
+                  {{ macro.svg('mail', 38,32) }}
+                  <a href="mailto:xamza.kabilov@bk.ru">xamza.kabilov@bk.ru</a>
+                </div>
+                <div class="contact__info-item contact__address">
+                  {{ macro.svg('map', 35,44) }}
+                  <p>Москва улица Мира 18/3</p>
+                </div>
+                <button class="contact__btn-map btn-buy btn-buy--red" type="button">На карте</button>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="contact__wrap-slider-bottom">
+          <ul class="contact__thumbs swiper-wrapper">
+            <li class="contact__thumbs-item thumb-info swiper-slide">
+              <button type="button">
+                {{ macro.svg('info', 62, 62) }}
+              </button>
+            </li>
+            <li class="contact__thumbs-item thumb-credit-card swiper-slide">
+              <button type="button">
+                {{ macro.svg('credit-card', 74, 56) }}
+              </button>
+            </li>
+            <li class="contact__thumbs-item thumb-ship swiper-slide">
+              <button type="button">
+                {{ macro.svg('ship', 59, 58) }}
+              </button>
+            </li>
+            <li class="contact__thumbs-item thumb-house swiper-slide">
+              <button type="button">
+                {{ macro.svg('house', 62, 56) }}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}
+
