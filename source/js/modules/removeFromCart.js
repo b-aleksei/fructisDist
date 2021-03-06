@@ -22,6 +22,7 @@ export const updateSum = (sum) => {
 export const removeFromCart = (btn) => {
   const row = btn.closest('.order__item');
   row.classList.add('order__item--collapse');
+  console.log('row: ', row);
   row.addEventListener('transitionend', () => {
     row.remove();
     updateSum(calculateSum());

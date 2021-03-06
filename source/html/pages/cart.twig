@@ -12,21 +12,21 @@
     </div>
     <div class="cart__content-wrap">
     <div class="cart__content">
-      <div class="order">
-        <h2 class="order__title">Ваш заказ</h2>
+      <table class="order">
+        <caption class="order__title">Ваш заказ</caption>
         {% for item in order %}
-          <div class="order__item">
-            <div class="order__item-name">{{ item }}</div>
-            <div>1кг</div>
-            <div class="order__item-price" data-price="300">руб</div>
-            <div>
+          <tr class="order__item">
+            <td class="order__item-name">{{ item }}</td>
+            <td>1кг</td>
+            <td class="order__item-price" data-price="300">руб</td>
+            <td>
               <button class="order__item-remove" type="button" aria-label="Удалить">
                 {{ macro.svg('trash', 14, 15) }}
               </button>
-            </div>
-          </div>
+            </td>
+          </tr>
         {% endfor %}
-      </div>
+      </table>
       <p class="order__amount">
         <span class="order__total" data-total="0">Сумма:</span>руб
       </p>
