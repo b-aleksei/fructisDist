@@ -3,10 +3,12 @@ import './modules/swiper';
 import './modules/contact';
 import menu from './modules/menu';
 import {removeFromCart} from './modules/removeFromCart';
+import {updateSum} from './modules/removeFromCart';
+import {calculateSum} from './modules/removeFromCart';
 import {changeValue} from './modules/swiper';
 
 menu();
-
+updateSum(calculateSum());
 document.addEventListener('click', (e) => {
   const changeValueBtn = e.target.closest('.change-value-btn');
   const btnRemoveItem = e.target.closest('.order__item-remove');
