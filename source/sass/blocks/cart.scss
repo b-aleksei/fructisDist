@@ -37,13 +37,12 @@
   }
 
   @media (max-width: $viewport-m) {
-    padding-top: 130px;
     justify-content: center;
     align-items: flex-start;
   }
 
   @media (max-width: $viewport-s) {
-    padding: 114px 10px 0;
+    padding: 30px 10px 0;
     align-items: flex-start;
   }
 }

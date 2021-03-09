@@ -210,7 +210,8 @@
 
 .nav__link {
   padding: 0;
-  display: block;
+  display: flex;
+  justify-content: center;
   max-width: 57px;
 
   @media (max-width: $viewport-s) {
